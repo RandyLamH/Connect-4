@@ -8,7 +8,6 @@ import csv
 pygame.init()
 clock = pygame.time.Clock()
 
-
 ## Constants ##
 CLICK_RECT = []
 run_start = True
@@ -24,7 +23,7 @@ if run_start:
     text_col = (0, 0, 0)
 
 
-    ## Test ##
+    ## Create Beginner Items ##
 
     toggle_click = False
     settings_button = classes.Button("Settings", window.get_width() / 2 - 100, 466)
@@ -40,6 +39,7 @@ if run_start:
 def draw_text(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     window.blit(img, (x, y))
+
 def settings(button_inst, button_inst2, font, text_col, x, y):
     global toggle_click
     pos = pygame.mouse.get_pos()
@@ -131,6 +131,7 @@ while main_menu:
     window.fill((173,216,230))
     titlefont = pygame.font.Font("fonts/GameCrack-5yWeV.ttf", 50)
     font_x, font_y = font.size("titlefont")
+    ## Create Connect 4 On Title Screen ##
     for i in range(len(connect4)):
         if i >= 6:
 
@@ -138,6 +139,7 @@ while main_menu:
                       50)
         else:
             draw_text(connect4[i], titlefont, colorloop[i], window.get_width() / 2 - (font_x ) + (i * 35), 50)
+    ## Play Main Game ##
     run = play_button.play(window)
     for button in buttons:
         if button.draw(window):
@@ -162,7 +164,7 @@ while main_menu:
             main_menu = False
             run_main_game = False
     pygame.display.flip()
-
+## Checks For Valid Colors From Settings ##
 player1_color = None
 player2_color = None
 player1_shown = None
@@ -182,6 +184,7 @@ except:
     player2_color = color_constants["yellow"]
     player2_shown = "images/yellow_piece.jpg"
     text_color2 = "yellow"
+
 def place_and_update_piece(player):
     mouse_pos = pygame.mouse.get_pos()
     for rect in CLICK_RECT:
